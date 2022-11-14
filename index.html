@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section id="main">
+        <div class="container">
+            <input id="addText" type="text" placeholder="What To Do" required>
+            <button id="submitButton" onclick="addElements()"> Save </button>
+        </div>
+        <ul id="list"></ul>
+    </section>
+
+    <script>
+        function addElements() {
+            addCheckbox();
+            reset();
+        }
+
+        function addCheckbox() {
+            var ul = document.getElementById("list");
+            const li = document.createElement("li");
+            let input = document.querySelector("#addText").value;
+            const txt = document.createTextNode(input);
+            var x = document.createElement("INPUT");
+            x.setAttribute("type", "checkbox");
+            x.setAttribute("id", "xBox");
+            ul.appendChild(li);
+            li.appendChild(x);
+            li.appendChild(txt);
+        }
+
+        function reset(){
+            document.getElementById("addText").value = "";
+        }
+
+
+    </script>
+</body>
+
+</html>
+
+<!-- Sources -->
+<!-- 
+    https://stackoverflow.com/questions/20673959/how-to-add-new-li-to-ul-onclick-with-javascript
+
+    https://www.geeksforgeeks.org/how-to-clear-form-after-submit-in-javascript-without-using-reset/
+ -->
