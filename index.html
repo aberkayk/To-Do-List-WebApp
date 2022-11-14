@@ -13,31 +13,58 @@
     <section id="main">
         <div class="container">
             <input id="addText" type="text" placeholder="What To Do" required>
-            <button id="submitButton" onclick="addElements()"> Save </button>
+            <button id="submitButton" onclick="addElements()"> Add </button>
         </div>
-        <ul id="list"></ul>
+        <ul id="list">
+            <h3>TO-DO-LIST</h3>
+        </ul>
     </section>
 
     <script>
+
+        var input = document.getElementById("addText");
+        input.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("submitButton").click();
+            }
+        });
+
         function addElements() {
-            addCheckbox();
+            addContent();
             reset();
         }
 
-        function addCheckbox() {
-            var ul = document.getElementById("list");
+        function addContent() {
+            const ul = document.getElementById("list");
             const li = document.createElement("li");
-            let input = document.querySelector("#addText").value;
-            const txt = document.createTextNode(input);
+            li.setAttribute("class", "content");
+            const input = document.querySelector("#addText").value;
+            var txt = document.createTextNode(input);
             var x = document.createElement("INPUT");
             x.setAttribute("type", "checkbox");
             x.setAttribute("id", "xBox");
-            ul.appendChild(li);
-            li.appendChild(x);
-            li.appendChild(txt);
+
+            if (input.length == 0) {
+                alert("NOTHING TO DO!");
+            }
+            else {
+                ul.appendChild(li);
+                li.appendChild(x);
+                li.appendChild(txt);
+            }
+
+            const button = document.createElement('button')
+            button.innerText = 'X'
+            button.className = 'btn'
+            button.addEventListener("click", function () {
+                li.remove();
+            });
+            li.appendChild(button);
+
         }
 
-        function reset(){
+        function reset() {
             document.getElementById("addText").value = "";
         }
 

@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .container{
@@ -17,12 +18,12 @@
 }
 
 input{
-    height: 25px;
+    height: 35px;
     width: 40%;
     margin: 5px;
     border-radius: 5px;
     border: 1px solid black;
-    background-color: rgb(215, 217, 219);
+    background-color: rgb(234, 228, 228);
 }
 
 input[type=text]{
@@ -32,11 +33,11 @@ input[type=text]{
 input::placeholder{
     font-weight: 500;
     font-size: 13px;
-    color: black;
+    color: rgb(137, 132, 132);
 }
 
 button{
-    height: 25px;
+    height: 35px;
     width: 15%;
     margin: 5px;
     background-color: rgb(59, 54, 54);
@@ -48,18 +49,51 @@ ul:empty{
     display: none;
 }
 
+
+ul li input[type=checkbox]{
+    width: 10%;
+    font-size: 10p;
+    transform: scale(0.6);
+}
+
 ul{
     width: 90%;
     background: linear-gradient(rgb(151, 165, 225), rgb(255, 177, 177));
     margin: 10px auto;
     border-radius: 5px;
     border: 1px solid black;
+    text-align: center;
 }
 
-li{
+ul li{
     display: flex;
     align-items: center;
     border: 0.3px solid gray;
     margin: 5px 5px;
     border-radius: 5px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-style: italic;
+    font-weight: 550;
+}
+
+ul h3{
+    display: inline-block;
+    padding: 0 15px;
+    margin: 10px 0;
+    border-bottom: 1px solid black;
+    letter-spacing: 1px;
+    font-size: 25px;
+}
+
+.btn{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 10%;
+}
+
+.btn:hover{
+    cursor: pointer;
+    transform: scale(1.2);
 }
