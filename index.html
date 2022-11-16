@@ -36,31 +36,31 @@
         }
 
         function addContent() {
-            const ul = document.getElementById("list");
-            const li = document.createElement("li");
-            li.setAttribute("class", "content");
+            const list = document.getElementById("list");
+            const listItem = document.createElement("li");
+            listItem.setAttribute("class", "content");
             const input = document.querySelector("#addText").value;
             var txt = document.createTextNode(input);
-            var x = document.createElement("INPUT");
-            x.setAttribute("type", "checkbox");
-            x.setAttribute("id", "xBox");
+            var checkBox = document.createElement("INPUT");
+            checkBox.setAttribute("type", "checkbox");
+            checkBox.setAttribute("id", "xBox");
 
             if (input.length == 0) {
                 alert("NOTHING TO DO!");
             }
             else {
-                ul.appendChild(li);
-                li.appendChild(x);
-                li.appendChild(txt);
+                list.appendChild(listItem);
+                listItem.appendChild(checkBox);
+                listItem.appendChild(txt);
             }
 
             const button = document.createElement('button')
             button.innerText = 'X'
             button.className = 'btn'
             button.addEventListener("click", function () {
-                li.remove();
+                listItem.remove();
             });
-            li.appendChild(button);
+            listItem.appendChild(button);
 
         }
 
