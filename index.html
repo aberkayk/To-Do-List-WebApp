@@ -22,6 +22,12 @@
 
     <script>
 
+        function mergeFunctions() {
+            addTodo();
+            printTodos();
+            storeItems();
+        }
+
         var todos = [];
         function addTodo() {
             const input = document.querySelector("#addText").value;
@@ -31,7 +37,7 @@
         function printTodos() {
             const list = document.getElementById("list");
             for (var i = todos.length - 1; i < todos.length; i++) {
-                toWrite = todos[todos.length-1];
+                toWrite = todos[todos.length - 1];
                 //let btnNumber = todos.length - 1; 
                 //Buttonlara farklı id'ler verebilmek için kullanılacak
                 if (todos[i].trim().length == 0) {
@@ -45,27 +51,22 @@
         }
 
 
-/* localStorage kısmı henüz düzgün çalışmıyor. Inputları farkı "key" değerli ile kayıt ediyor fakat sayfa yenilendiğinde tekrar en baştaki key'in value'sunu değiştirerek başlıyor yeni kayde.
-        function storeItems() {
-            for (var i = todos.length - 1; i < todos.length; i++) {
-                window.localStorage.setItem(JSON.stringify(todos.length - 1), JSON.stringify(todos[i]))
-            }
-        }
-
-        function retrieveRecords() {
-            for (var i = 0; i < todos.length-1; i++) {
-                //var key = window.localStorage.getItem(JSON.stringify(todos.length[i] - 1));
-                list.innerHTML += `<li id="+listItem+"><input type="checkbox" id="xBox">${key}<button class="btn">X</button></li>`;
-            }
-        }
-
-        window.onload = retrieveRecords();
-*/
-        function mergeFunctions() {
-            addTodo();
-            printTodos();
-            storeItems();
-        }
+        /* localStorage kısmı henüz düzgün çalışmıyor. Inputları farkı "key" değerli ile kayıt ediyor fakat sayfa yenilendiğinde tekrar en baştaki key'in value'sunu değiştirerek başlıyor yeni kayde.
+                function storeItems() {
+                    for (var i = todos.length - 1; i < todos.length; i++) {
+                        window.localStorage.setItem(JSON.stringify(todos.length - 1), JSON.stringify(todos[i]))
+                    }
+                }
+        
+                function retrieveRecords() {
+                    for (var i = 0; i < todos.length-1; i++) {
+                        //var key = window.localStorage.getItem(JSON.stringify(todos.length[i] - 1));
+                        list.innerHTML += `<li id="+listItem+"><input type="checkbox" id="xBox">${key}<button class="btn">X</button></li>`;
+                    }
+                }
+        
+                window.onload = retrieveRecords();
+        */
 
         /* Sources
         https://stackoverflow.com/questions/52603796/to-do-list-with-array-and-functions
