@@ -88,24 +88,54 @@
 
         function addContent() {
             const list = document.getElementById("list");
+<<<<<<< HEAD
             const input = document.querySelector("#addText").value;
+=======
+            const listItem = document.createElement("li");
+            listItem.setAttribute("class", "content");
+            const input = document.querySelector("#addText").value;
+            var txt = document.createTextNode(input);
+            var checkBox = document.createElement("INPUT");
+            checkBox.setAttribute("type", "checkbox");
+            checkBox.setAttribute("id", "xBox");
+>>>>>>> refs/remotes/origin/main
 
             if (input.trim().length == 0) {
                 alert("NOTHING TO DO!");
             }
             else {
+<<<<<<< HEAD
                 list.innerHTML += `<li id="+listItem+"><input type="checkbox" id="xBox">${input}<button class="btn" onclick="removeItem()">X</button></li>`;
                 document.getElementById("addText").value = "";
+=======
+                list.appendChild(listItem);
+                listItem.appendChild(checkBox);
+                listItem.appendChild(txt);
+>>>>>>> refs/remotes/origin/main
             }
 
             // Çalışmıyor. 
             const button = document.getElementsByClassName("btn");
             button.addEventListener("click", function () {
+<<<<<<< HEAD
                 const toRemove = document.getElementById("listItem");
                 toRemove.remove();
             });
         } 
 */
+=======
+                listItem.remove();
+            });
+            listItem.appendChild(button);
+
+        }
+
+        function reset() {
+            document.getElementById("addText").value = "";
+        }
+
+
+>>>>>>> refs/remotes/origin/main
     </script>
 </body>
 
