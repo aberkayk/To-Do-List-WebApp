@@ -13,7 +13,7 @@
     <section id="main">
         <div class="container">
             <input id="addText" type="text" placeholder="What To Do" required>
-            <button id="submitButton" onclick="addElements()"> Add </button>
+            <button id="submitButton" onclick="mergeFunctions()"> Add </button>
         </div>
         <ul id="list">
             <h3>TO-DO-LIST</h3>
@@ -22,7 +22,60 @@
 
     <script>
 
-        var input = document.getElementById("addText");
+        var todos = [];
+        function addTodo() {
+            const input = document.querySelector("#addText").value;
+            todos.push(input);
+        }
+
+        function printTodos() {
+            const list = document.getElementById("list");
+            for (var i = todos.length - 1; i < todos.length; i++) {
+                toWrite = todos[todos.length-1];
+                //let btnNumber = todos.length - 1; 
+                //Buttonlara farklı id'ler verebilmek için kullanılacak
+                if (todos[i].trim().length == 0) {
+                    alert("NOTHING TO DO!");
+                }
+                else {
+                    list.innerHTML += `<li id="+listItem+"><input type="checkbox" id="xBox">${toWrite}<button class="btn">X</button></li>`;
+                    document.getElementById("addText").value = "";
+                }
+
+                alert(todos[i]);
+            }
+        }
+
+
+/* localStorage kısmı henüz düzgün çalışmıyor. Inputları farkı "key" değerli ile kayıt ediyor fakat sayfa yenilendiğinde tekrar en baştaki key'in value'sunu değiştirerek başlıyor yeni kayde.
+        function storeItems() {
+            for (var i = todos.length - 1; i < todos.length; i++) {
+                window.localStorage.setItem(JSON.stringify(todos.length - 1), JSON.stringify(todos[i]))
+            }
+        }
+
+        function retrieveRecords() {
+            for (var i = 0; i < todos.length-1; i++) {
+                //var key = window.localStorage.getItem(JSON.stringify(todos.length[i] - 1));
+                list.innerHTML += `<li id="+listItem+"><input type="checkbox" id="xBox">${key}<button class="btn">X</button></li>`;
+            }
+        }
+
+        window.onload = retrieveRecords();
+*/
+        function mergeFunctions() {
+            addTodo();
+            printTodos();
+            storeItems();
+        }
+
+        /* Sources
+        https://stackoverflow.com/questions/52603796/to-do-list-with-array-and-functions
+        */
+
+
+        /* TODO LIST CREATED WITHOUT USING ARRAY
+        const input = document.getElementById("addText");
         input.addEventListener("keypress", function (event) {
             if (event.key === "Enter") {
                 event.preventDefault();
@@ -32,43 +85,28 @@
 
         function addElements() {
             addContent();
-            reset();
         }
 
         function addContent() {
-            const ul = document.getElementById("list");
-            const li = document.createElement("li");
-            li.setAttribute("class", "content");
+            const list = document.getElementById("list");
             const input = document.querySelector("#addText").value;
-            var txt = document.createTextNode(input);
-            var x = document.createElement("INPUT");
-            x.setAttribute("type", "checkbox");
-            x.setAttribute("id", "xBox");
 
-            if (input.length == 0) {
+            if (input.trim().length == 0) {
                 alert("NOTHING TO DO!");
             }
             else {
-                ul.appendChild(li);
-                li.appendChild(x);
-                li.appendChild(txt);
+                list.innerHTML += `<li id="+listItem+"><input type="checkbox" id="xBox">${input}<button class="btn" onclick="removeItem()">X</button></li>`;
+                document.getElementById("addText").value = "";
             }
 
-            const button = document.createElement('button')
-            button.innerText = 'X'
-            button.className = 'btn'
+            // Çalışmıyor. 
+            const button = document.getElementsByClassName("btn");
             button.addEventListener("click", function () {
-                li.remove();
+                const toRemove = document.getElementById("listItem");
+                toRemove.remove();
             });
-            li.appendChild(button);
-
-        }
-
-        function reset() {
-            document.getElementById("addText").value = "";
-        }
-
-
+        } 
+*/
     </script>
 </body>
 
