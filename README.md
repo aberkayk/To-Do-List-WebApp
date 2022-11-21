@@ -1,10 +1,10 @@
-# To-Do-List
+# To-Do-List-WebApp
 
 
-<h3> To Do List app made with HTML-CSS and JavaScript </h3>
+<h3> To Do List app made with HTML-CSS and Vanilla JavaScript </h3>
 
-<h5>Hit enter to add new To-Do. <br><br>
-Delete item with X button located at right side.<br><br>
+<h5>Items are stored at localStorage. <br><br>
+The list does not disappear when page refreshed.<br><br>
 Alert message appears if you try add something without any input text. <br><br>
 
 </h5>
