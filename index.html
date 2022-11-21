@@ -13,7 +13,8 @@
     <section id="main">
         <div class="container">
             <input id="addText" type="text" placeholder="What To Do" required>
-            <button id="submitButton" onclick="mergeFunctions()"> Add </button>
+            <button id="submitButton" value="submit" type="submit"> Add </button>
+            <button id="loadButton" value="load">Load</button>
         </div>
         <ul id="list">
             <h3>TO-DO-LIST</h3>
@@ -21,129 +22,91 @@
     </section>
 
     <script>
-
-        function mergeFunctions() {
-            addTodo();
-            printTodos();
-            storeItems();
-        }
-
+        //Create an array
         var todos = [];
+        //Get ul (list)
+        var list = document.getElementById('list');
+        //Get submit button and add event
+        var button = document.getElementById('submitButton');
+        button.addEventListener('click', addItem);
+
+        //Add todos to array
         function addTodo() {
-            const input = document.querySelector("#addText").value;
-            todos.push(input);
+            const input = document.querySelector('#addText').value;
+            if (input.trim().length !== 0) {
+                todos.push(input);
+            }
         }
 
-        function printTodos() {
-            const list = document.getElementById("list");
+        //Print items to the screen, store items
+        function addItem() {
+            addTodo();
+            storeItems();
+            //Create delete button
+            var delButton = document.createElement('button');
+            delButton.className = 'delete-button';
+            delButton.appendChild(document.createTextNode('X'));
+            delButton.addEventListener('click', removeItem)
+            //Create list item (li)
+            var li = document.createElement('li');
+            li.className = ('list-item');
+            //Create checkbox
+            var checkbox = document.createElement('input');
+            checkbox.type = ('checkbox');
+            //Add items to the list
             for (var i = todos.length - 1; i < todos.length; i++) {
-                toWrite = todos[todos.length - 1];
-                //let btnNumber = todos.length - 1; 
-                //Buttonlara farklı id'ler verebilmek için kullanılacak
                 if (todos[i].trim().length == 0) {
                     alert("NOTHING TO DO!");
                 }
                 else {
-                    list.innerHTML += `<li id="+listItem+"><input type="checkbox" id="xBox">${toWrite}<button class="btn">X</button></li>`;
+                    list.appendChild(li);
+                    li.append(checkbox, todos[i], delButton);
                     document.getElementById("addText").value = "";
                 }
             }
         }
 
-
-        /* localStorage kısmı henüz düzgün çalışmıyor. Inputları farkı "key" değerli ile kayıt ediyor fakat sayfa yenilendiğinde tekrar en baştaki key'in value'sunu değiştirerek başlıyor yeni kayde.
-                function storeItems() {
-                    for (var i = todos.length - 1; i < todos.length; i++) {
-                        window.localStorage.setItem(JSON.stringify(todos.length - 1), JSON.stringify(todos[i]))
-                    }
-                }
-        
-                function retrieveRecords() {
-                    for (var i = 0; i < todos.length-1; i++) {
-                        //var key = window.localStorage.getItem(JSON.stringify(todos.length[i] - 1));
-                        list.innerHTML += `<li id="+listItem+"><input type="checkbox" id="xBox">${key}<button class="btn">X</button></li>`;
-                    }
-                }
-        
-                window.onload = retrieveRecords();
-        */
-
-        /* Sources
-        https://stackoverflow.com/questions/52603796/to-do-list-with-array-and-functions
-        */
-
-
-        /* TODO LIST CREATED WITHOUT USING ARRAY
-        const input = document.getElementById("addText");
-        input.addEventListener("keypress", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                document.getElementById("submitButton").click();
-            }
-        });
-
-        function addElements() {
-            addContent();
+        //Add items to the localStorage as an array
+        function storeItems() {
+            localStorage.setItem('todos', JSON.stringify(todos));
         }
 
-        function addContent() {
-            const list = document.getElementById("list");
-<<<<<<< HEAD
-            const input = document.querySelector("#addText").value;
-=======
-            const listItem = document.createElement("li");
-            listItem.setAttribute("class", "content");
-            const input = document.querySelector("#addText").value;
-            var txt = document.createTextNode(input);
-            var checkBox = document.createElement("INPUT");
-            checkBox.setAttribute("type", "checkbox");
-            checkBox.setAttribute("id", "xBox");
->>>>>>> refs/remotes/origin/main
-
-            if (input.trim().length == 0) {
-                alert("NOTHING TO DO!");
-            }
-            else {
-<<<<<<< HEAD
-                list.innerHTML += `<li id="+listItem+"><input type="checkbox" id="xBox">${input}<button class="btn" onclick="removeItem()">X</button></li>`;
-                document.getElementById("addText").value = "";
-=======
-                list.appendChild(listItem);
-                listItem.appendChild(checkBox);
-                listItem.appendChild(txt);
->>>>>>> refs/remotes/origin/main
-            }
-
-            // Çalışmıyor. 
-            const button = document.getElementsByClassName("btn");
-            button.addEventListener("click", function () {
-<<<<<<< HEAD
-                const toRemove = document.getElementById("listItem");
-                toRemove.remove();
+        //Reloads stored items
+        function loadItems() {
+            //Get stored items as an array
+            let itemsArray = JSON.parse(localStorage.getItem('todos'));
+            itemsArray.forEach((element) => {
+                //Create delete button
+                var delButton = document.createElement('button');
+                delButton.className = 'delete-button';
+                delButton.appendChild(document.createTextNode('X'));
+                delButton.addEventListener('click', removeItem);
+                //Create list item (li)
+                var li = document.createElement('li');
+                li.className = ('list-item');
+                //Create checkbox
+                var checkbox = document.createElement('input');
+                checkbox.type = ('checkbox');
+                //Add list items to the list
+                list.append(li);
+                li.append(checkbox, element, delButton);
             });
-        } 
-*/
-=======
-                listItem.remove();
-            });
-            listItem.appendChild(button);
-
+            todos = itemsArray;
         }
 
-        function reset() {
-            document.getElementById("addText").value = "";
+        //Remove items from the list
+        function removeItem(e) {
+            if (e.target.classList.contains('delete-button')) {
+                if (confirm('Are you sure?')) {
+                    var li = e.target.parentElement;
+                    list.removeChild(li);
+                }
+            }
         }
 
-
->>>>>>> refs/remotes/origin/main
+        //Bring data to the screen when page loads
+        window.onload(loadItems());
     </script>
 </body>
 
 </html>
-
-<!-- Sources -->
-<!-- 
-    https://stackoverflow.com/questions/20673959/how-to-add-new-li-to-ul-onclick-with-javascript
-
-    https://www.geeksforgeeks.org/how-to-clear-form-after-submit-in-javascript-without-using-reset/
- -->

@@ -7,23 +7,32 @@
 
 .container{
     border: 1px solid black;
-    width: 90%;
+    width: 60%;
     height: 20vh;
-    margin: 40px auto 10px auto;
+    margin: 4% auto 5% auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
     background: linear-gradient(rgb(151, 165, 225), rgb(255, 177, 177));
 }
 
+.todo-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 input{
     height: 35px;
-    width: 40%;
-    margin: 5px;
+    width: 95%;
     border-radius: 5px;
     border: 1px solid black;
     background-color: rgb(234, 228, 228);
+    display: inline;
+    max-width: 300px;
 }
 
 input[type=text]{
@@ -34,15 +43,18 @@ input::placeholder{
     font-weight: 500;
     font-size: 13px;
     color: rgb(137, 132, 132);
+    text-align: center;
 }
 
 button{
+    display: inline;
     height: 35px;
-    width: 15%;
-    margin: 5px;
+    width: 60%;
+    margin-top: 5px;
     background-color: rgb(59, 54, 54);
     color: white;
     border-radius: 5px;
+    max-width: 200px;
 }
 
 ul:empty{
@@ -75,6 +87,7 @@ ul li{
     letter-spacing: 1px;
     font-style: italic;
     font-weight: 550;
+    height: 40px;
 }
 
 ul h3{
@@ -86,14 +99,18 @@ ul h3{
     font-size: 25px;
 }
 
-.btn{
+.delete-button{
     width: 20px;
     height: 20px;
     position: absolute;
     right: 10%;
+    background-color: rgb(59, 54, 54);
+    color: white;
+    transform: scale(1.1);
+    transition-duration: 0.5s;
 }
 
-.btn:hover{
+.delete-button:hover{
     cursor: pointer;
     transform: scale(1.2);
 }
