@@ -9,5 +9,5 @@ Alert message appears if you try add something without any input text. <br><br>
 
 </h5>
 
-![](screen.gif)
+![](screenRecord.gif)
 
