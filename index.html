@@ -14,7 +14,6 @@
         <div class="container">
             <input id="addText" type="text" placeholder="What To Do" required>
             <button id="submitButton" value="submit" type="submit"> Add </button>
-            <button id="loadButton" value="load">Load</button>
         </div>
         <ul id="list">
             <h3>TO-DO-LIST</h3>
@@ -43,7 +42,8 @@
             addTodo();
             storeItems();
             //Create delete button
-            var delButton = document.createElement('button');
+            var delButton = document.createElement('input');
+            delButton.value = 'X';
             delButton.className = 'delete-button';
             delButton.appendChild(document.createTextNode('X'));
             delButton.addEventListener('click', removeItem)
@@ -94,12 +94,15 @@
             todos = itemsArray;
         }
 
-        //Remove items from the list
+        //Remove items from the list and localStorage
         function removeItem(e) {
             if (e.target.classList.contains('delete-button')) {
                 if (confirm('Are you sure?')) {
                     var li = e.target.parentElement;
                     list.removeChild(li);
+                    const removeIndex = todos.indexOf(e.target.parentElement.innerText.replace('X', ''));
+                    todos.splice(removeIndex, 1);
+                    localStorage.setItem('todos', JSON.stringify(todos))
                 }
             }
         }
